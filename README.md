@@ -11,3 +11,16 @@
 ```
 python run_tests.py
 ```
+
+## Task_0.5
+
+Visdom images results:
+
+### Simple classification
+![Simple](visdom_results/simple.png)
+
+### Split classification
+![Split](visdom_results/split.png)
+
+### XOR classification
+![XOR](visdom_results/xor.png)

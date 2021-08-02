@@ -23,12 +23,20 @@ class Module:
     def train(self):
         "Set the mode of this module and all descendent modules to `train`."
         # TODO: Implement for Task 0.4.
-        raise NotImplementedError('Need to implement for Task 0.4')
+        # raise NotImplementedError('Need to implement for Task 0.4')
+
+        self.mode = 'train'
+        for el in self.modules():
+            el.train()
 
     def eval(self):
         "Set the mode of this module and all descendent modules to `eval`."
         # TODO: Implement for Task 0.4.
-        raise NotImplementedError('Need to implement for Task 0.4')
+        # raise NotImplementedError('Need to implement for Task 0.4')
+
+        self.mode = 'eval'
+        for el in self.modules():
+            el.eval()
 
     def named_parameters(self):
         """
@@ -39,7 +47,18 @@ class Module:
             dict: Each name (key) and :class:`Parameter` (value) under this module.
         """
         # TODO: Implement for Task 0.4.
-        raise NotImplementedError('Need to implement for Task 0.4')
+        # raise NotImplementedError('Need to implement for Task 0.4')
+
+        all_params_dict = {}
+
+        for module_key, module_value in self._modules.items():
+            for nested_module_key, nested_module_value in module_value.named_parameters().items():
+                all_params_dict[f'{module_key}.{nested_module_key}'] = nested_module_value
+
+        for param_key, param_value in self._parameters.items():
+            all_params_dict[param_key] = param_value
+
+        return all_params_dict
 
     def parameters(self):
         return self.named_parameters().values()
